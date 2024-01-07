@@ -16,4 +16,13 @@ class Board
     row, column = square
     positions_matrix[row][column] = piece
   end
+
+  def move_piece!(move)
+    piece = move.first
+    target_square = move.last
+
+    self[target_square] = self[piece]
+
+    self[piece] = nil
+  end
 end
