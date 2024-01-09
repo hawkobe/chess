@@ -25,4 +25,13 @@ class Board
 
     self[piece] = nil
   end
+
+  def in_bounds?(square)
+    square.none? { |position| position >= BOARD_LENGTH || position < 0 }
+  end
+
+  def square_empty?(square)
+    row, column = square
+    in_bounds?(square) && positions_matrix[row][column].nil?
+  end
 end
