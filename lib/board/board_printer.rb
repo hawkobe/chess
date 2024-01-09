@@ -14,8 +14,10 @@ class BoardPrinter
 
   def print_board
     print_floor
-    SQUARE_HEIGHT.times { print_row }
-    print_floor
+    board_length.times do |row|
+      SQUARE_HEIGHT.times { print_row }
+      print_floor
+    end
   end
 
   def clear_screen
