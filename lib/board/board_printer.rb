@@ -1,8 +1,14 @@
+require 'colorize'
+
 class BoardPrinter 
   FIRST_FLOOR = '+--------+'
   FLOOR = '--------+'
-  FIRST_WALL = '|        |'
-  WALLS = '        |'
+
+  FIRST_ROW_BLACK = '|        |'
+  FIRST_ROW_WHITE = "|████████|"
+  BLACK_ROW = '        |'
+  WHITE_ROW = "████████|"
+
   SQUARE_HEIGHT = 3
 
   attr_reader :board_length, :board
@@ -14,8 +20,8 @@ class BoardPrinter
 
   def print_board
     print_floor
-    board_length.times do |row|
-      SQUARE_HEIGHT.times { print_row }
+    board_length.times do |row_number|
+      SQUARE_HEIGHT.times { print_row(row_number) }
       print_floor
     end
   end
@@ -30,8 +36,13 @@ class BoardPrinter
     puts FIRST_FLOOR + FLOOR * (board_length - 1)
   end
 
-  def print_row
-    puts FIRST_WALL + WALLS * (board_length - 1)
+  def print_row(row_number)
+    puts row_number.even? ? row : row.reverse
   end
 
+  def row
+    FIRST_ROW_WHITE + 
+      (BLACK_ROW + WHITE_ROW) * 3 +
+      BLACK_ROW
+  end
 end
