@@ -25,7 +25,7 @@ class BoardPrinter
     print_column_letters
     print_floor
     board_length.times do |row_number|
-      SQUARE_HEIGHT.times { |square_row| print_row(row_number, square_row) }
+      SQUARE_HEIGHT.times { |square_row_number| print_row(row_number, square_row_number) }
       print_floor
     end
     new_line
