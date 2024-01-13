@@ -6,4 +6,10 @@ class Piece
     @color = color
   end
 
+  def to_s
+    case color
+    when :white then self.class::WHITE
+    else self.class::BLACK
+    end
+  end
 end
