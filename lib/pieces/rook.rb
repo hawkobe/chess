@@ -1,4 +1,4 @@
 class Rook < Piece
-  WHITE = ♖
-  BLACK = ♜
+  WHITE = '♖'
+  BLACK = '♜'
 end

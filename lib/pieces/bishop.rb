@@ -1,4 +1,4 @@
 class Bishop < Piece
-  WHITE = ♗
-  BLACK = ♝
+  WHITE = '♗'
+  BLACK = '♝'
 end

@@ -1,4 +1,4 @@
 class Pawn < Piece
-  WHITE = ♙
-  BLACK = ♟︎
+  WHITE = '♙'
+  BLACK = '♟︎'
 end

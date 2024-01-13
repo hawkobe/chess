@@ -1,4 +1,4 @@
 class Queen < Piece
-  WHITE = ♕
-  BLACK = ♛
+  WHITE = '♕'
+  BLACK = '♛'
 end
