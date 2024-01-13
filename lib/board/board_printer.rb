@@ -5,12 +5,12 @@ class BoardPrinter
   ROW_NUMBERS = [*('1'..'8')].reverse
   MARGIN = " " * 3
 
-  FIRST_FLOOR = '+--------+'
-  FLOOR = '--------+'
-  FIRST_ROW_BLACK = '|        |'
-  FIRST_ROW_WHITE = "|████████|"
-  BLACK_ROW = '        |'
-  WHITE_ROW = "████████|"
+  FIRST_FLOOR = '+-------+'
+  FLOOR = '-------+'
+  FIRST_ROW_BLACK = '|       |'
+  FIRST_ROW_WHITE = "|███████|"
+  BLACK_ROW = '       |'
+  WHITE_ROW = "███████|"
 
   SQUARE_HEIGHT = 3
 
@@ -70,13 +70,13 @@ class BoardPrinter
   def print_white_square(square, column)
     print(
       if board[square].nil? && column.zero?
-        "  |███ #{board[square]} ███|"
+        "  |██ #{board[square]}  ██|"
       elsif column.zero?
-        "   |██ #{board[square]}  ██|"
+        "   |██ #{board[square]} ██|"
       elsif board[square].nil?
-        "███ #{board[square]} ███|"
-      else
         "██ #{board[square]}  ██|"
+      else
+        "██ #{board[square]} ██|"
       end
     )
   end
@@ -84,13 +84,13 @@ class BoardPrinter
   def print_black_square(square, column)
     print(
       if board[square].nil? && column.zero?
-        "  |  #{board[square]}      |"
+        "  |  #{board[square]}     |"
       elsif column.zero?
         "   |   #{board[square]}    |"
       elsif board[square].nil?
-        "   #{board[square]}     |"
-      else
         "   #{board[square]}    |"
+      else
+        "    #{board[square]}   |"
       end
     )
   end
