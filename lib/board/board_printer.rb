@@ -27,7 +27,7 @@ class BoardPrinter
     board_length.times do |row_number|
       print_row(row_number)
       print ROW_NUMBERS[row_number]
-      print_middle_row(row_number)
+      print_piece_row(row_number)
       puts MARGIN + ROW_NUMBERS[row_number]
       print_row(row_number)
       print_floor
@@ -50,8 +50,49 @@ class BoardPrinter
     puts row_number.even? ? white_starting_row : black_starting_row
   end
 
-  def print_middle_row(row_number)
-    print row_number.even? ? white_starting_row[1..-1] : black_starting_row[1..-1]
+  def print_piece_row(row_number)
+    board_length.times do |column|
+      square = [row_number, column]
+
+      if white_square?(square) then print_white_square(square, column)
+      else print_black_square(square, column)
+      end
+    end
+  end
+
+  def white_square?(square)
+    row = square.first
+    column = square.last
+
+    row.even? && column.even? || row.odd? && column.odd?
+  end
+
+  def print_white_square(square, column)
+    print(
+      if board[square].nil? && column.zero?
+        "  |███ #{board[square]} ███|"
+      elsif column.zero?
+        "   |██ #{board[square]}  ██|"
+      elsif board[square].nil?
+        "███ #{board[square]} ███|"
+      else
+        "██ #{board[square]}  ██|"
+      end
+    )
+  end
+
+  def print_black_square(square, column)
+    print(
+      if board[square].nil? && column.zero?
+        "  |  #{board[square]}      |"
+      elsif column.zero?
+        "   |   #{board[square]}    |"
+      elsif board[square].nil?
+        "   #{board[square]}     |"
+      else
+        "   #{board[square]}    |"
+      end
+    )
   end
 
   def white_starting_row
