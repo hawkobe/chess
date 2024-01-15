@@ -5,12 +5,12 @@ class BoardPrinter
   ROW_NUMBERS = [*('1'..'8')].reverse
   MARGIN = " " * 3
 
-  FIRST_FLOOR = '+-------+'
-  FLOOR = '-------+'
-  FIRST_ROW_BLACK = '|       |'
-  FIRST_ROW_WHITE = "|███████|"
-  BLACK_ROW = '       |'
-  WHITE_ROW = "███████|"
+  # FIRST_FLOOR = '+-------+'
+  # FLOOR = '-------+'
+  FIRST_ROW_BLACK = "       ".colorize(:background => :black)
+  FIRST_ROW_WHITE = "       ".colorize(:background => :gray)
+  BLACK_ROW = "       ".colorize(:background => :black)
+  WHITE_ROW = "       ".colorize(:background => :gray)
 
   SQUARE_HEIGHT = 3
 
@@ -23,14 +23,14 @@ class BoardPrinter
 
   def print_board
     print_column_letters
-    print_floor
+    # print_floor
     board_length.times do |row_number|
       print_row(row_number)
       print ROW_NUMBERS[row_number]
       print_piece_row(row_number)
       puts MARGIN + ROW_NUMBERS[row_number]
       print_row(row_number)
-      print_floor
+      # print_floor
     end
     new_line
     print_column_letters
@@ -70,13 +70,13 @@ class BoardPrinter
   def print_white_square(square, column)
     print(
       if board[square].nil? && column.zero?
-        "  |██ #{board[square]}  ██|"
+        "  " + "   #{board[square]}    ".colorize(:background => :gray)
       elsif column.zero?
-        "   |██ #{board[square]} ██|"
+        "  " + "   #{board[square]}   ".colorize(:background => :gray)
       elsif board[square].nil?
-        "██ #{board[square]}  ██|"
+        "   #{board[square]}    ".colorize(:background => :gray)
       else
-        "██ #{board[square]} ██|"
+        "   #{board[square].to_s.colorize(:background => :gray)}   ".colorize(:background => :gray)
       end
     )
   end
@@ -84,18 +84,18 @@ class BoardPrinter
   def print_black_square(square, column)
     print(
       if board[square].nil? && column.zero?
-        "  |  #{board[square]}     |"
+        "  " + "   #{board[square]}    ".colorize(:background => :black)
       elsif column.zero?
-        "   |   #{board[square]}    |"
+        "  " + "#{board[square]}    ".colorize(:background => :black)
       elsif board[square].nil?
-        "   #{board[square]}    |"
+        "   #{board[square]}    ".colorize(:background => :black)
       else
-        "    #{board[square]}   |"
+        "   #{board[square]}   ".colorize(:background => :black)
       end
     )
   end
 
-  def white_starting_row
+  def white_starting_row 
     MARGIN +
       FIRST_ROW_WHITE +
       (BLACK_ROW + WHITE_ROW) * 3 +
@@ -110,7 +110,7 @@ class BoardPrinter
   end
 
   def print_column_letters
-    COLUMN_LETTERS.each { |letter| print "        #{letter}" }
+    COLUMN_LETTERS.each { |letter| print "      #{letter}" }
     new_line
     new_line
   end
