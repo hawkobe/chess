@@ -76,7 +76,7 @@ class BoardPrinter
       elsif board[square].nil?
         "   #{board[square]}    ".colorize(:background => :gray)
       else
-        "   #{board[square].to_s.colorize(:background => :gray)}   ".colorize(:background => :gray)
+        "   #{board[square]}   ".colorize(:background => :gray)
       end
     )
   end
@@ -86,7 +86,7 @@ class BoardPrinter
       if board[square].nil? && column.zero?
         "  " + "   #{board[square]}    ".colorize(:background => :black)
       elsif column.zero?
-        "  " + "#{board[square]}    ".colorize(:background => :black)
+        "  " + "   #{board[square]}   ".colorize(:background => :black)
       elsif board[square].nil?
         "   #{board[square]}    ".colorize(:background => :black)
       else
