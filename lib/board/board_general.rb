@@ -9,7 +9,7 @@ class Board
   attr_reader :positions_matrix
 
   def initialize
-    @positions_matrix = Array.new(BOARD_LENGTH) { Array.new(BOARD_LENGTH)}
+    @positions_matrix = Array.new(BOARD_LENGTH) { Array.new(BOARD_LENGTH, ' ')}
   end
   
   def [](square)
