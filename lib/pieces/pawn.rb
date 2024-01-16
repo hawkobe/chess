@@ -1,4 +1,6 @@
+require 'colorize'
+
 class Pawn < Piece
-  WHITE = '♙'
-  BLACK = '♟︎'
+  WHITE = "♙"
+  BLACK = "\u265F"
 end
