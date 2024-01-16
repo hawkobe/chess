@@ -1,4 +1,4 @@
 class Knight < Piece
   WHITE = '♘' 
-  BLACK = '♞'
+  BLACK = "♞"
 end

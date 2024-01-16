@@ -1,3 +1,5 @@
+require 'colorize'
+
 class Piece
   attr_reader :location, :color
 

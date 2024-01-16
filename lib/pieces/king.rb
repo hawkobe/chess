@@ -1,4 +1,4 @@
 class King < Piece
-  WHITE = '♔'
-  BLACK = '♚'
+  WHITE = "♔"
+  BLACK = "♚"
 end
