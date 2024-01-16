@@ -1,5 +1,10 @@
+require_relative '../piece.rb'
+
 class Board
   BOARD_LENGTH = 8
+  PIECE_SEQUENCE = [
+    Rook, Knight, Bishop, Queen, King, Bishop, Knight, Rook
+  ]
 
   attr_reader :positions_matrix
 
@@ -33,5 +38,25 @@ class Board
   def square_empty?(square)
     row, column = square
     in_bounds?(square) && positions_matrix[row][column].nil?
+  end
+
+  def populate_pawns
+    [1, 6].each do |pawn_row|
+      color = pawn_row == 1 ? :black : :white
+
+      BOARD_LENGTH.times do |column|
+        self[[pawn_row, column]] = Pawn.new([pawn_row, column], color)
+      end
+    end
+  end
+
+  def populate_pieces
+    [0, 7].each do |pieces_row|
+      color = pieces_row == 0 ? :black : :white
+
+      PIECE_SEQUENCE.each_with_index do |piece, index|
+        self[[pieces_row, index]] = piece.new([pieces_row, index], color)
+      end
+    end
   end
 end
