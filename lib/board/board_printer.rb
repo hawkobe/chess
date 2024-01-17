@@ -69,12 +69,12 @@ class BoardPrinter
 
   def print_white_square(square, column)
     print(
-      if board[square].nil? && column.zero?
-        "  " + "   #{board[square]}    ".colorize(:background => :gray)
-      elsif column.zero?
+      # if board[square].nil? && column.zero?
+      #   "  " + "   #{board[square]}    ".colorize(:background => :gray)
+      if column.zero?
         "  " + "   #{board[square]}   ".colorize(:background => :gray)
-      elsif board[square].nil?
-        "   #{board[square]}    ".colorize(:background => :gray)
+      # elsif board[square].nil?
+      #   "   #{board[square]}    ".colorize(:background => :gray)
       else
         "   #{board[square]}   ".colorize(:background => :gray)
       end
@@ -83,12 +83,12 @@ class BoardPrinter
 
   def print_black_square(square, column)
     print(
-      if board[square].nil? && column.zero?
-        "  " + "   #{board[square]}    ".colorize(:background => :black)
-      elsif column.zero?
+      # if board[square].nil? && column.zero?
+      #   "  " + "   #{board[square]}    ".colorize(:background => :black)
+      if column.zero?
         "  " + "   #{board[square]}   ".colorize(:background => :black)
-      elsif board[square].nil?
-        "   #{board[square]}    ".colorize(:background => :black)
+      # elsif board[square].nil?
+      #   "   #{board[square]}    ".colorize(:background => :black)
       else
         "   #{board[square]}   ".colorize(:background => :black)
       end
