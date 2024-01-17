@@ -11,7 +11,7 @@ class Piece
   def to_s
     case color
     when :white then self.class::WHITE
-    else self.class::BLACK
+    else self.class::BLACK.light_cyan
     end
   end
 end
