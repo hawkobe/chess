@@ -1,11 +1,13 @@
 require 'colorize'
 
 class Piece
-  attr_reader :location, :color
+  attr_reader :location, :color, :board
 
-  def initialize(location, color)
+  def initialize(location, color, board)
     @location = location
     @color = color
+    @board = board
+    @valid_moves = []
   end
 
   def to_s
