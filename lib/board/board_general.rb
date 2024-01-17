@@ -37,7 +37,11 @@ class Board
 
   def square_empty?(square)
     row, column = square
-    in_bounds?(square) && positions_matrix[row][column].nil?
+    in_bounds?(square) && positions_matrix[row][column] == ' '
+  end
+
+  def piece_color_in_square(square)
+    self[square].color
   end
 
   def populate_pawns
@@ -45,7 +49,7 @@ class Board
       color = pawn_row == 1 ? :black : :white
 
       BOARD_LENGTH.times do |column|
-        self[[pawn_row, column]] = Pawn.new([pawn_row, column], color)
+        self[[pawn_row, column]] = Pawn.new([pawn_row, column], color, self)
       end
     end
   end
@@ -55,7 +59,7 @@ class Board
       color = pieces_row == 0 ? :black : :white
 
       PIECE_SEQUENCE.each_with_index do |piece, index|
-        self[[pieces_row, index]] = piece.new([pieces_row, index], color)
+        self[[pieces_row, index]] = piece.new([pieces_row, index], color, self)
       end
     end
   end
