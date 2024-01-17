@@ -28,7 +28,7 @@ class Board
 
     self[target_square] = self[piece]
 
-    self[piece] = nil
+    self[piece] = ' '
   end
 
   def in_bounds?(square)
