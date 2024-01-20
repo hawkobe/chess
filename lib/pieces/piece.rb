@@ -1,13 +1,46 @@
 require 'colorize'
 
 class Piece
-  attr_reader :location, :color, :board
+  attr_reader :location, :color, :board, :valid_moves, :valid_captures
 
   def initialize(location, color, board)
     @location = location
     @color = color
     @board = board
     @valid_moves = []
+    @vaild_captures = []
+  end
+
+  def find_all_moves(move_set)
+    @valid_moves = []
+    row = location[0]
+    column = location[1]
+
+    move_set.each do |move|
+      target_square = [row + move[0], column + move[1]]
+      while board.square_empty?(target_square)
+        @valid_moves << target_square
+        target_square = [target_square[0] + move[0], target_square[1] + move[1]]
+      end
+    end
+    @valid_moves
+  end
+
+  def find_capture_moves(move_set)
+    @valid_captures = []
+    row = location[0]
+    column = location[1]
+
+    move_set.each do |move|
+      target_square = [row + move[0], column + move[1]]
+      while board.square_empty?(target_square)
+        target_square = [target_square[0] + move[0], target_square[1] + move[1]]
+      end
+      next unless board.in_bounds?(target_square) &&
+                  board.piece_color_in_square(target_square) != board[location].color
+      valid_captures << target_square
+    end
+    @valid_captures
   end
 
   def to_s
