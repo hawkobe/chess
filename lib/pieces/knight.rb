@@ -20,14 +20,14 @@ class Knight < Piece
     moves
   end
 
-  def valid_empty_square_moves
-    legal_moves = find_all_moves.select do |move| 
+  def find_empty_square_moves
+    @valid_moves = find_all_moves.select do |move| 
       move if board.square_empty?(move)
     end
   end
 
-  def valid_capture_moves
-    legal_moves = find_all_moves.select do |move|
+  def find_capture_moves
+    @valid_capture_moves = find_all_moves.select do |move|
       next if board[move] == ' '
       move if board.in_bounds?(move) && board.piece_color_in_square(move) != board[location].color
     end
