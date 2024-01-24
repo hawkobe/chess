@@ -20,7 +20,7 @@ class Pawn < Piece
     all_moves = []
 
     self.first_move ? push_first_move_set(all_moves, row, column) : push_regular_move_set(all_moves, row, column)
-    push_capture_move_set(all_moves, row, column)
+    # push_capture_move_set(all_moves, row, column)
     
     all_moves
   end
@@ -37,7 +37,10 @@ class Pawn < Piece
     color == :white ? moves_array << [row - 1, column] : moves_array << [row + 1, column]
   end
 
-  def push_capture_move_set(moves_array, row, column)
+  def push_capture_move_set
+    row = location[0]
+    column = location[1]
+    moves_array = []
     if color == :white
       target_squares = [[row - 1, column - 1], [row - 1, column + 1]]
       occupied_target_squares = target_squares.reject { |square| board.square_empty?(square) }
@@ -47,6 +50,7 @@ class Pawn < Piece
       occupied_target_squares = target_squares.reject { |square| board.square_empty?(square) }
       occupied_target_squares.each { |square| moves_array << square } unless occupied_target_squares.empty?
     end
+    moves_array
   end
 
   def find_all_moves
@@ -56,7 +60,7 @@ class Pawn < Piece
   end
 
   def find_capture_moves
-    @valid_captures = find_every_move.select do |move|
+    @valid_captures = push_capture_move_set.select do |move|
       next if board[move] == ' '
       move if board.in_bounds?(move) && board.piece_color_in_square(move) != board[location].color
     end
