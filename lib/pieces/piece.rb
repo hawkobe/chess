@@ -10,7 +10,7 @@ class Piece
     @color = color
     @board = board
     @valid_moves = []
-    @vaild_captures = []
+    @valid_captures = []
     @highlighted_moves = []
   end
 
@@ -46,39 +46,6 @@ class Piece
       valid_captures << target_square
     end
     @valid_captures
-  end
-
-  # def highlight_valid_moves(possible_moves)
-  #   possible_moves.each do |location|
-  #     @highlighted_moves << location
-  #     board[location] = "\u25CF".light_red
-  #   end
-  # end
-
-  def highlight_valid_moves
-    self.find_all_moves
-    self.find_capture_moves
-    moves_to_highlight = self.valid_moves + self.valid_captures
-    moves_to_highlight.each do |location|
-      highlighted_moves << location
-      self.valid_moves.include?(location) ? board[location] = "\u25CF".light_red : board[location].light_red
-    end
-    # self.valid_moves.each do |location|
-    #   @highlighted_moves << location
-    #   board[location] = "\u25CF".light_red
-    # end
-    # self.valid_captures.each do |location|
-    #   @highlighted_moves << location
-    #   board[location] = board[location].to_s.light_red
-    # end
-  end
-
-  def unhighlight_valid_moves
-    highlighted_moves.each do |location|
-      self.valid_moves.include?(location) ? board[location] = ' ' : board[location] = board[location].to_s
-      binding.pry
-      @highlighted_moves = []
-    end
   end
 
   def to_s
