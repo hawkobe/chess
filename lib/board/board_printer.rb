@@ -5,14 +5,10 @@ class BoardPrinter
   ROW_NUMBERS = [*('1'..'8')].reverse
   MARGIN = " " * 3
 
-  # FIRST_FLOOR = '+-------+'
-  # FLOOR = '-------+'
   FIRST_ROW_BLACK = "       ".colorize(:background => :black)
   FIRST_ROW_WHITE = "       ".colorize(:background => :gray)
   BLACK_ROW = "       ".colorize(:background => :black)
   WHITE_ROW = "       ".colorize(:background => :gray)
-
-  SQUARE_HEIGHT = 3
 
   attr_reader :board_length, :board
 
@@ -23,14 +19,12 @@ class BoardPrinter
 
   def print_board
     print_column_letters
-    # print_floor
     board_length.times do |row_number|
       print_row(row_number)
       print ROW_NUMBERS[row_number]
       print_piece_row(row_number)
       puts MARGIN + ROW_NUMBERS[row_number]
       print_row(row_number)
-      # print_floor
     end
     new_line
     print_column_letters
@@ -67,30 +61,32 @@ class BoardPrinter
     row.even? && column.even? || row.odd? && column.odd?
   end
 
+  def display_square(square)
+    if board.currently_selected_piece.valid_moves.include?(square)
+      "\u25CF".light_red
+    elsif board.currently_selected_piece.valid_captures.include?(square)
+      board[square].to_s.light_red
+    else
+      board[square]
+    end
+  end
+
   def print_white_square(square, column)
     print(
-      # if board[square].nil? && column.zero?
-      #   "  " + "   #{board[square]}    ".colorize(:background => :gray)
       if column.zero?
-        "  " + "   #{board[square]}   ".colorize(:background => :gray)
-      # elsif board[square].nil?
-      #   "   #{board[square]}    ".colorize(:background => :gray)
+        "  " + "   #{display_square(square)}   ".colorize(:background => :gray)
       else
-        "   #{board[square]}   ".colorize(:background => :gray)
+        "   #{display_square(square)}   ".colorize(:background => :gray)
       end
     )
   end
 
   def print_black_square(square, column)
     print(
-      # if board[square].nil? && column.zero?
-      #   "  " + "   #{board[square]}    ".colorize(:background => :black)
       if column.zero?
-        "  " + "   #{board[square]}   ".colorize(:background => :black)
-      # elsif board[square].nil?
-      #   "   #{board[square]}    ".colorize(:background => :black)
+        "  " + "   #{display_square(square)}   ".colorize(:background => :black)
       else
-        "   #{board[square]}   ".colorize(:background => :black)
+        "   #{display_square(square)}   ".colorize(:background => :black)
       end
     )
   end
