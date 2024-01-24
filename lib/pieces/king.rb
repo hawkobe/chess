@@ -25,7 +25,8 @@ class King < Piece
 
   def find_capture_moves
     @valid_capture_moves = find_every_move.select do |move|
-      next if board[move] == ' '
+      # next if board[move] == ' '
+      next if square_empty?(square)
       move if board.in_bounds?(move) && board.piece_color_in_square(move) != board[location].color
     end
   end
