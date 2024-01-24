@@ -7,9 +7,11 @@ class Board
   ]
 
   attr_reader :positions_matrix
+  attr_accessor :currently_selected_piece
 
   def initialize
     @positions_matrix = Array.new(BOARD_LENGTH) { Array.new(BOARD_LENGTH, ' ')}
+    @currently_selected_piece = nil
   end
   
   def [](square)
