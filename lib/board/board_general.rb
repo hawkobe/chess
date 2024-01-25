@@ -12,6 +12,7 @@ class Board
   def initialize
     @positions_matrix = Array.new(BOARD_LENGTH) { Array.new(BOARD_LENGTH, ' ')}
     @currently_selected_piece = nil
+    @en_passant_active = false
   end
   
   def [](square)
