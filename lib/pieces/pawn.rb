@@ -10,6 +10,7 @@ class Pawn < Piece
   def initialize(location, color, board)
     super
     @first_move = true
+    @en_passant_position = []
   end
   # in some function will have to change first move to false,
   # but probably not until it *actually moves*, rather
@@ -20,7 +21,6 @@ class Pawn < Piece
     all_moves = []
 
     self.first_move ? push_first_move_set(all_moves, row, column) : push_regular_move_set(all_moves, row, column)
-    # push_capture_move_set(all_moves, row, column)
     
     all_moves
   end
