@@ -61,16 +61,6 @@ class BoardPrinter
     row.even? && column.even? || row.odd? && column.odd?
   end
 
-  def display_square(square)
-    if board.currently_selected_piece.valid_moves.include?(square)
-      "\u25CF".light_red
-    elsif board.currently_selected_piece.valid_captures.include?(square)
-      board[square].to_s.light_red
-    else
-      board[square]
-    end
-  end
-
   def print_white_square(square, column)
     print(
       if column.zero?
@@ -89,6 +79,20 @@ class BoardPrinter
         "   #{display_square(square)}   ".colorize(:background => :black)
       end
     )
+  end
+
+  def display_square(square)
+    if board.currently_selected_piece
+      if board.currently_selected_piece.valid_moves.include?(square)
+        "\u25CF".light_red
+      elsif board.currently_selected_piece.valid_captures.include?(square)
+        board[square].to_s.light_red
+      else
+        board[square]
+      end
+    else
+      board[square]
+    end
   end
 
   def white_starting_row 
