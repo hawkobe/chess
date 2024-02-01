@@ -84,4 +84,17 @@ class Board
       end
     end
   end
+
+  def assign_moves
+    positions_matrix.each do |row|
+      row.each do |square|
+        if square.is_a?(Piece)
+          square.find_all_moves
+          square.find_capture_moves
+        else
+          next
+        end
+      end
+    end
+  end
 end
