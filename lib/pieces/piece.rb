@@ -48,6 +48,10 @@ class Piece
     @valid_captures
   end
 
+  def has_valid_moves?
+    @valid_captures.length > 0 || @valid_moves.length > 0
+  end
+
   def to_s
     case color
     when :white then self.class::WHITE
