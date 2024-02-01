@@ -5,6 +5,24 @@ class Board
   PIECE_SEQUENCE = [
     Rook, Knight, Bishop, Queen, King, Bishop, Knight, Rook
   ]
+  MOVE_HASH = {
+    "a" => 0,
+    "b" => 1,
+    "c" => 2,
+    "d" => 3,
+    "e" => 4,
+    "f" => 5,
+    "g" => 6,
+    "h" => 7,
+    "1" => 7,
+    "2" => 6,
+    "3" => 5,
+    "4" => 4,
+    "5" => 3,
+    "6" => 2,
+    "7" => 1,
+    "8" => 0
+  }
 
   attr_reader :positions_matrix
   attr_accessor :currently_selected_piece
