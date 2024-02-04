@@ -13,6 +13,7 @@ class Player
     puts "Alright, #{name}, it's your turn. Please select a piece you would like to move"
     input = gets.chomp
     until piece_input_valid?(convert_player_input(input))
+      # need to find a way to differentiate  *why* it doesn't work to output to term
       puts "oops, that input doesn't work. Try again"
       input = gets.chomp
     end
