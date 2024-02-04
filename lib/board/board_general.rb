@@ -65,6 +65,12 @@ class Board
     self[square].color
   end
 
+  def setup_board
+    populate_pawns
+    populate_pieces
+    assign_moves
+  end
+
   def populate_pawns
     [1, 6].each do |pawn_row|
       color = pawn_row == 1 ? :black : :white
