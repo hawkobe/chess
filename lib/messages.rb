@@ -34,12 +34,48 @@ module Messages
       you would like to select, you will have other options available
       to you. You may type any of the following to perform any of the
       following commands:
-          #{"save".light_red}: This will save your current progress and
-                ask you if you would like to quit or continue
-          #{"quit".light_red}: This will quit the program without saving
           #{"back".light_red}: This will allow you to unselect a piece you
                 have selected and select another piece
+          #{"save".light_red}: This will save your current progress and
+                ask you if you would like to quit or continue
+          #{"resign".light_red}: You concede the game 
+          #{"quit".light_red}: This will quit the program without saving
           #{"help".light_red}: This will display these instructions again
       HEREDOC
+  end
+
+  def player_setup_intro
+    <<~HEREDOC
+    
+      Alright let's get each player set up with names and colors.
+
+      Player 1, please enter your name:
+    HEREDOC
+  end
+
+  def player_two_setup
+    <<~HEREDOC
+
+      Thanks for entering your name!
+
+      Player 2, please enter your name:
+    HEREDOC
+  end
+
+  def assign_player_colors_message(player_one_name, player_two_name)
+    <<~HEREDOC
+
+      Thanks #{player_one_name} and #{player_two_name}! Now let's get your colors assigned at random. 
+      Once the colors have been chosen, white will go first.
+
+    HEREDOC
+  end
+
+  def announce_white(player_name)
+    <<~HEREDOC
+
+      #{player_name}, you are white, that means you go first!
+
+    HEREDOC
   end
 end
