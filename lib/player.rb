@@ -13,8 +13,7 @@ class Player
     puts "Alright, #{name}, it's your turn. Please select a piece you would like to move"
     input = gets.chomp
     until piece_input_valid?(convert_player_input(input))
-      # need to find a way to differentiate  *why* it doesn't work to output to term
-      puts "oops, that input doesn't work. Try again"
+      invalid_input_response(convert_player_input(input))
       input = gets.chomp
     end
     puts "okay so you've selected #{input}. Great!"
@@ -46,6 +45,18 @@ class Player
 
   def move_input_valid?(converted_input)
     board.currently_selected_piece.valid_moves.include?(converted_input) || board.currently_selected_piece.valid_captures.include?(converted_input)
+  end
+
+  def invalid_input_response(converted_input)
+    if !board.in_bounds?(converted_input)
+      puts 'Sorry, that place doesn\'t exist on the board'
+    elsif board[converted_input] == ' '
+      puts 'Oops, doesn\'t seem to be a piece there'
+    elsif board[converted_input].color != self.color
+      puts 'That\'s not your piece!'
+    else
+      puts 'That piece doesn\'t have any moves!'
+    end 
   end
 
   def to_s
